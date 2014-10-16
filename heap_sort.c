@@ -3,8 +3,8 @@
 #include <math.h>
 #include <time.h>
 
-void bottom_up_heapsort(int*, int);
-void heapsort(int*, int);
+void bottom_up_heap_sort(int*, int);
+void heap_sort(int*, int);
 void sift_up(int*, int);
 void sift_down(int*, int);
 void build_max_heap(int*, int); 
@@ -41,8 +41,8 @@ int main() {
 		//print_array(A, N);
 
 		begin = clock();
-		// call heapsort on the first unsorted array
-		heapsort(A, N);
+		// call heap_sort on the first unsorted array
+		heap_sort(A, N);
 		end = clock();
 		time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
 
@@ -72,8 +72,8 @@ int main() {
                 //print_array(B, N);
 
 		begin = clock();
-                // call heapsort on the unsorted array
-                bottom_up_heapsort(B, N);
+                // call heap_sort on the unsorted array
+                bottom_up_heap_sort(B, N);
 		end = clock();
 		time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
 
@@ -91,7 +91,7 @@ int main() {
 	return 0;
 }
 
-void bottom_up_heapsort(int* arr, int len) {
+void bottom_up_heap_sort(int* arr, int len) {
 	int i;
 
 	// build a max heap from the bottom up using sift up
@@ -106,7 +106,7 @@ void bottom_up_heapsort(int* arr, int len) {
 	}
 }
 
-void heapsort(int* arr, int len) {
+void heap_sort(int* arr, int len) {
 	int i;
 
 	// build a max heap from the array
