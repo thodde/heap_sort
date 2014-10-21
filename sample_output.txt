@@ -1,0 +1,54 @@
+hoddet@ubuntu:~/Desktop/tmp/HS$ ./heap_sort 
+Testing Sift_Down Heap Sort
+Time Spent Generating Array: 0.553075
+Comparisons for heap construction: 168
+Done with k = 2
+Comparisons for Heap Sort: 848
+Time Spent on Heap Sort: 0.000058
+
+Time Spent Generating Array: 3.105731
+Comparisons for heap construction: 1881
+Done with k = 3
+Comparisons for Heap Sort: 14980
+Time Spent on Heap Sort: 0.000244
+
+Time Spent Generating Array: 27.131379
+Comparisons for heap construction: 18722
+Done with k = 4
+Comparisons for Heap Sort: 216558
+Time Spent on Heap Sort: 0.003175
+
+Time Spent Generating Array: 291.162697
+Comparisons for heap construction: 188251
+Done with k = 5
+Comparisons for Heap Sort: 2831410
+Time Spent on Heap Sort: 0.045868
+
+----------------------------------
+Testing Sift_Up Heap Sort
+Time Spent Generating Array: 0.590058
+Comparisons for heap construction: 194
+Done with k = 2
+Comparisons for Heap Sort: 6833
+Time Spent on Heap Sort: 0.000098
+
+Time Spent Generating Array: 2.979122
+Comparisons for heap construction: 2245
+Done with k = 3
+Comparisons for Heap Sort: 694822
+Time Spent on Heap Sort: 0.007897
+
+Time Spent Generating Array: 27.746062
+Comparisons for heap construction: 22872
+Done with k = 4
+Comparisons for Heap Sort: 69148140
+Time Spent on Heap Sort: 0.769144
+
+Time Spent Generating Array: 292.480154
+Comparisons for heap construction: 227311
+Done with k = 5
+Comparisons for Heap Sort: 2646524763
+Time Spent on Heap Sort: 74.842942
+
+----------------------------------
+
