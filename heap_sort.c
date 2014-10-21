@@ -12,10 +12,11 @@ void bottom_up_build_max_heap(int*, int);
 void randomize_in_place(int*, int);
 int* generate_array(int);
 void swap(int*, int*);
+int cmp(int, int);
 void print_array(int*, int);
 
 int heapsize;
-int comparison_counter;
+unsigned long comparison_counter;
 clock_t begin, end;
 double time_spent;
 
@@ -50,7 +51,7 @@ int main() {
 		//printf("Sorted array: \n");
 		//print_array(A, N);
 		printf("Done with k = %d\n", k);
-		printf("Number of comparisons: %d\n", comparison_counter);
+		printf("Comparisons for Heap Sort: %lu\n", comparison_counter);
 		printf("Time Spent on Heap Sort: %f\n", time_spent);
 		printf("\n");
 	}
@@ -81,7 +82,7 @@ int main() {
                 //printf("Sorted array: \n");
                 //print_array(B, N);
                 printf("Done with k = %d\n", k);
-		printf("Number of comparisons: %d\n", comparison_counter);
+		printf("Comparisons for Heap Sort: %lu\n", comparison_counter);
 		printf("Time Spent on Heap Sort: %f\n", time_spent);
 		printf("\n");
         }
@@ -96,6 +97,8 @@ void bottom_up_heap_sort(int* arr, int len) {
 
 	// build a max heap from the bottom up using sift up
 	bottom_up_build_max_heap(arr, len);
+	printf("Comparisons for heap construction: %lu\n", comparison_counter);
+ 	comparison_counter = 0;	
 	for(i = len-1; i >= 0; i--) {
 		// swap the last leaf and the root
 		swap(&arr[i], &arr[0]);
@@ -111,6 +114,8 @@ void heap_sort(int* arr, int len) {
 
 	// build a max heap from the array
 	build_max_heap(arr, len);
+	printf("Comparisons for heap construction: %lu\n", comparison_counter);
+	comparison_counter = 0;
 	for(i = len-1; i >= 1; i--) {
 		swap(&arr[0], &arr[i]); // move arr[0] to its sorted place
 		// remove the already sorted values
@@ -125,12 +130,13 @@ void sift_down(int* arr, int i) {
 
 	if(c >= heapsize) return;
 
-	if((c+1 < heapsize) && (arr[c+1] > arr[c])) {
+	// locate largest child of i
+	if((c+1 < heapsize) && cmp(arr[c+1], arr[c]) > 0) {
 		c++;
 	}
 
-	if(arr[c] > arr[i]) {
-		comparison_counter++;
+	// if child is larger than i, swap them
+	if(cmp(arr[c], arr[i]) > 0) {
 		swap(&arr[c], &arr[i]);
 		sift_down(arr, c);
 	}
@@ -140,8 +146,7 @@ void sift_up(int* arr, int i) {
 	if(i == 0) return; // at the root
 
 	// if the current node is larger than its parent, swap them
-	if(arr[i] > arr[(i-1)/2]) {
-		comparison_counter++;
+	if(cmp(arr[i], arr[(i-1)/2]) > 0) {
 		swap(&arr[i], &arr[(i-1)/2]);
 		// sift up to repair the heap
 		sift_up(arr, (i-1)/2);
@@ -208,6 +213,14 @@ void swap(int* a, int* b) {
 	int temp = *a;
 	*a = *b;
 	*b = temp;
+}
+
+int cmp(int a, int b) {
+	comparison_counter++;
+	
+	if(a > b) return 1;
+	else if(a < b) return -1;
+	else return 0;
 }
 
 // print out an array by iterating through
